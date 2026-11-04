@@ -1,0 +1,111 @@
+# Projeto: Ferramenta de Validação de Dados Cadastrais
+
+## 1. Documentos de identificação
+
+1. **CPF**
+   - Validar o formato e a quantidade de dígitos.
+   - Verificar os dígitos verificadores.
+   - Identificar sequências numéricas inválidas.
+
+2. **CNPJ**
+   - Validar o formato e a quantidade de dígitos.
+   - Verificar os dígitos verificadores.
+   - Identificar sequências numéricas inválidas.
+
+3. **RG**
+   - Verificar o preenchimento e o formato conforme o padrão aplicável.
+   - Considerar as diferenças entre os estados e os modelos de identificação.
+   - Quando necessário, permitir a identificação do órgão emissor e da UF.
+
+4. **CNH**
+   - Validar o preenchimento e o formato do número de registro.
+   - Verificar regras de consistência aplicáveis.
+   - Consulta de autenticidade e situação cadastral somente por meio de serviço autorizado.
+
+5. **Título de eleitor**
+   - Validar o preenchimento e o formato.
+   - Aplicar as regras de validação numérica pertinentes.
+   - Consulta da situação eleitoral somente por meio de serviço autorizado.
+
+6. **NIS/PIS/PASEP**
+   - Validar o preenchimento e a quantidade de dígitos.
+   - Aplicar as regras de validação numérica pertinentes.
+   - Não confundir validação matemática com confirmação de existência ou situação cadastral.
+
+7. **Certidão de nascimento/casamento**
+   - Verificar o preenchimento dos campos obrigatórios.
+   - Validar o formato e a estrutura dos dados, conforme o modelo do documento.
+   - Verificar a consistência de campos como número de matrícula, data de emissão e serventia, quando aplicáveis.
+   - A confirmação de autenticidade depende de mecanismos ou serviços oficiais apropriados.
+
+## 2. Dados de contato
+
+8. **CEP**
+   - Verificar o formato e a quantidade de dígitos.
+   - Consultar um serviço de CEP para verificar se existe um endereço associado.
+   - Retornar os dados de endereço disponíveis, como logradouro, bairro, município e UF.
+
+9. **E-mail**
+   - Validar a sintaxe do endereço eletrônico.
+   - Verificar o preenchimento e os formatos inválidos.
+   - Opcionalmente, verificar a existência de registros DNS do domínio, sem garantir que a caixa postal exista ou esteja ativa.
+
+10. **Telefone**
+    - Validar o DDD.
+    - Verificar a quantidade de dígitos conforme o tipo de telefone.
+    - Verificar o formato de telefones fixos e celulares.
+    - Identificar números incompletos ou com estrutura inválida.
+
+## 3. Dados cadastrais e geográficos
+
+11. **Endereço**
+    - Verificar o preenchimento dos campos obrigatórios.
+    - Conferir a consistência entre CEP, município e UF.
+    - Quando necessário, consultar serviços externos para verificar a correspondência entre o CEP e o endereço informado.
+
+12. **Data de nascimento**
+    - Validar o formato da data.
+    - Identificar datas inexistentes, como 31/02.
+    - Verificar se a data está dentro dos limites definidos pelas regras do sistema.
+    - Opcionalmente, verificar a coerência da idade com outras informações cadastrais.
+
+13. **Nome completo**
+    - Verificar se o campo foi preenchido.
+    - Remover ou identificar espaços excedentes.
+    - Identificar valores compostos apenas por números ou caracteres inválidos.
+    - Aplicar regras de consistência sem rejeitar nomes legítimos por diferenças de acentuação, sobrenomes ou composição.
+
+14. **Código do município**
+    - Verificar o preenchimento e o formato do código.
+    - Consultar uma tabela de referência oficial de municípios, como a tabela de códigos do IBGE.
+    - Verificar se o código existe e corresponde ao município informado.
+    - Quando aplicável, conferir a compatibilidade entre município e UF.
+
+## 4. Funcionamento geral da ferramenta
+
+A ferramenta deverá permitir a entrada de dados individuais ou a importação de arquivos CSV para análise em lote.
+
+Para cada registro analisado, deverá apresentar:
+
+- Campo analisado.
+- Valor encontrado.
+- Resultado da validação.
+- Motivo da inconsistência, quando houver.
+- Orientação para correção, quando aplicável.
+
+### Classificação dos resultados
+
+- **Válido:** passou nas regras implementadas.
+- **Inválido:** não atende a uma regra de validação.
+- **Pendente de consulta:** depende de uma API ou fonte externa.
+- **Não verificado:** não há regra ou fonte disponível para concluir a análise.
+
+## 5. Tecnologias previstas
+
+- **HTML:** estrutura das telas e formulários.
+- **CSS:** interface, tabelas, indicadores e responsividade.
+- **JavaScript:** validações locais, leitura de arquivos e geração de relatórios.
+- **APIs externas:** consultas de CEP e outras verificações que exijam fontes externas.
+- **Tabelas de referência:** códigos oficiais de municípios e outras informações necessárias.
+
+A validação matemática ou estrutural não deverá ser apresentada como confirmação de autenticidade, existência ou situação cadastral de uma pessoa ou documento.
